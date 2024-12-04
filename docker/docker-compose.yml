@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  sqlite-web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      SQLITE_DATABASE: /data/webui.db
+      SQLITE_WEB_PASSWORD: "123!"
+    volumes:
+      - /Users/hao.qinghao/VSCodeProjects/open-webui/backend/data:/data
+    command: sqlite_web /data/webui.db -H 0.0.0.0 -p 8000 -P

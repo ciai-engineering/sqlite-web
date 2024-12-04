@@ -1,0 +1,34 @@
+replicaCount: 1
+
+image:
+  repository: coleifer/sqlite-web
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: false
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  - name: SQLITE_DATABASE
+    value: /data/webui.db
+  - name: SQLITE_WEB_PASSWORD
+    value: "123!"
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  mountPath: /data
+  hostPath: /Users/hao.qinghao/VSCodeProjects/open-webui/backend/data
